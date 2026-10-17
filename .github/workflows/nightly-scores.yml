@@ -72,8 +72,11 @@ jobs:
       - name: Prepare Cloudflare deploy folder
         if: steps.update.outputs.changed == 'true' || inputs.force_deploy
         run: |
+          # A Pages deploy replaces the whole site, so the team logos must ship with every deploy.
           mkdir -p _deploy
           cp index.html _deploy/index.html
+          if [ -d logos ]; then cp -r logos _deploy/logos; fi
+          printf '/logos/*\n  Cache-Control: public, max-age=604800\n' > _deploy/_headers
 
       - name: Skip Cloudflare deploy (no API token secret)
         if: (steps.update.outputs.changed == 'true' || inputs.force_deploy) && env.CF_TOKEN_PRESENT != 'true'
