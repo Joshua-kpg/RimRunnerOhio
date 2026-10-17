@@ -1,5 +1,5 @@
 rules_version = '2';
-// RimRunnerOhio Firestore rules (same as RimRunnerIndiana). Not deployed yet: no Firebase project exists for Ohio.
+// RimRunnerOhio Firestore rules (same as RimRunnerIndiana). Project: rimrunnerohio.
 // Data written by index.html: profiles/{uid}, userFollows/{uid},
 // picks/{week}/entries/{uid}, teamFollows/{teamId}. Everything else is denied.
 service cloud.firestore {
